@@ -79,7 +79,7 @@ const Section4 = () => {
         <img
           ref={suMenhImageRef}
           src={SuMenhImg}
-          className='w-[355px] h-[200px] rounded-2xl md:w-[734.14px] md:h-[492.59px] md:rounded-3xl md:order-1'
+          className='w-[355px] h-[200px] rounded-2xl lg:w-[734.14px] lg:h-[492.59px] md:rounded-3xl md:order-1'
         />
         <p
           ref={suMenhDateRef}

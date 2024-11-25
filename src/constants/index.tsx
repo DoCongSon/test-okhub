@@ -11,6 +11,8 @@ import Brand1 from '../assets/images/logo-brand-1.png'
 import Brand2 from '../assets/images/logo-brand-2.png'
 import Brand3 from '../assets/images/logo-brand-3.png'
 import Brand4 from '../assets/images/logo-brand-4.png'
+import Person from '../assets/images/person.png'
+import Avatar from '../assets/images/avatar.png'
 
 type SuMenhType = {
   icon: string
@@ -20,6 +22,14 @@ type SuMenhType = {
 
 type DauAnType = SuMenhType & {
   unit?: string
+}
+
+type DoiTac = {
+  name: string
+  image: string
+  avatar: string
+  position: string
+  comment: string
 }
 
 const suMenh: SuMenhType[] = [
@@ -99,4 +109,31 @@ const brands = [
   Brand3,
   Brand4,
 ]
-export { suMenh, dauAn, brands }
+
+const doiTac: DoiTac[] = [
+  {
+    name: 'TS. Đinh Thanh Vân',
+    image: Person,
+    avatar: Avatar,
+    position: 'Phó trưởng Khoa Ngân hàng - Tài chính, ĐH Kinh tế, GHQG Hà Nội',
+    comment:
+      'Chúng tôi thực sự hứng khởi khi đồng hành cùng Ami&M bởi ở đây có một đội ngũ nhân sự không chỉ giàu kinh nghiệm Strong lĩnh vực ngân hàng - tài chính mà quan trọng hơn đầy nhiệt tâm với mong muốn đóng góp vào sự phát triển chung của quá trình giáo dục định hướng thế hệ trẻ.',
+  },
+  {
+    name: 'TS. Đinh Thiên Hương',
+    image: Person,
+    avatar: Avatar,
+    position: 'Chuyên gia tư vấn tài chính, Ngân hàng Thế giới',
+    comment:
+      'Tôi rất ấn tượng với sự chuyên nghiệp, tận tâm của đội ngũ tư vấn tài chính tại Ami&M. Họ không chỉ giúp tôi tìm ra giải pháp tài chính phù hợp với nhu cầu mà còn giúp tôi hiểu rõ hơn về cách quản lý tài chính cá nhân.',
+  },
+  {
+    name: 'Ông Nguyễn Văn A',
+    image: Person,
+    avatar: Avatar,
+    position: 'Giám đốc Công ty TNHH ABC',
+    comment:
+      'Các chuyên gia tư vấn tài chính tại Ami&M đã giúp tôi tìm ra giải pháp tài chính phù hợp với nhu cầu cũng như mục tiêu tài chính của doanh nghiệp. Tôi rất hài lòng với dịch vụ của Ami&M.',
+  },
+]
+export { suMenh, dauAn, brands, doiTac }

@@ -2,18 +2,26 @@ import SuMenhImg from '../../assets/images/su-menh.png'
 import BgImg from '../../assets/images/bg4-pc.png'
 import BgBrand from '../../assets/images/bg-brand.png'
 import BgBrandMb from '../../assets/images/bg-brand-mb.png'
-import Preson from '../../assets/images/person.png'
-import Avatar from '../../assets/images/avatar.png'
 import useScreen from '../../hooks/useScreen'
 import Marquee from 'react-fast-marquee'
-import { brands } from '../../constants'
+import { brands, doiTac } from '../../constants'
 import { useGSAP } from '@gsap/react'
 import SplitType from 'split-type'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useState } from 'react'
 gsap.registerPlugin(ScrollTrigger)
 
+type DoiTac = {
+  name: string
+  image: string
+  avatar: string
+  position: string
+  comment: string
+}
+
 const Section7 = () => {
+  const [showDoiTac, setShowDoiTac] = useState<DoiTac>(doiTac[2])
   const isMobileScreen = useScreen() == 'mobile'
 
   useGSAP(
@@ -68,22 +76,16 @@ const Section7 = () => {
               <div className='w-1.5 h-1.5 bg-white/80 rounded-full' />
               <p className='text-white/80 text-base font-semibold leading-normal'>HỢP TÁC VỮNG BỀN</p>
             </div>
-            <p className='w-[695px] text-white text-[28px] font-semibold leading-[40px]'>
-              Chúng tôi thực sự hứng khởi khi đồng hành cùng Ami&M bởi ở đây có một đội ngũ nhân sự không chỉ giàu kinh
-              nghiệm trong lĩnh vực ngân hàng - tài chính mà quan trọng hơn đầy nhiệt tâm với mong muốn đóng góp vào sự
-              phát triển chung của quá trình giáo dục định hướng thế hệ trẻ.{' '}
-            </p>
+            <p className='w-[695px] text-white text-[28px] font-semibold leading-[40px]'>{showDoiTac.comment}</p>
             <div className='h-[50px] flex-col justify-start items-start flex'>
-              <div className='text-center text-white text-[22px] font-semibold leading-7'>TS. Đinh Thanh Vân</div>
+              <div className='text-center text-white text-[22px] font-semibold leading-7'>{showDoiTac.name}</div>
               <div className='justify-center items-center gap-2.5 inline-flex'>
                 <div className='justify-start items-center gap-1 flex'>
                   <div className='w-[2.61px] h-[2.61px] bg-[#8dc63f] rounded-full' />
                   <div className='w-[3.91px] h-[3.91px] bg-[#35aa94] rounded-full' />
                   <div className='w-[5.09px] h-[5.09px] bg-[#0088cb] rounded-full' />
                 </div>
-                <div className='text-center text-white text-sm font-semibold leading-[21px]'>
-                  Phó trưởng Khoa Ngân hàng - Tài chính, ĐH Kinh tế, GHQG Hà Nội
-                </div>
+                <div className='text-center text-white text-sm font-semibold leading-[21px]'>{showDoiTac.position}</div>
                 <div className='origin-top-left justify-start items-center gap-1 flex'>
                   <div className='w-[2.61px] h-[2.61px] bg-[#ed1b2f] rounded-full' />
                   <div className='w-[3.91px] h-[3.91px] bg-[#d24d70] rounded-full' />
@@ -92,26 +94,30 @@ const Section7 = () => {
               </div>
             </div>
             <div className='flex items-center gap-4'>
-              <div className='w-[94px] h-[94px] rounded-full cursor-pointer relative'>
-                <div
-                  className='absolute inset-0 rounded-full'
-                  style={{ background: 'conic-gradient(white 0% 50%, transparent 50% 100%)' }}
-                />
-                <img
-                  src={Avatar}
-                  className='absolute w-[calc(100%-2px)] h-[calc(100%-2px)] rounded-full object-cover'
-                />
-              </div>
-              <div className='w-[70px] h-[70px] rounded-full cursor-pointer'>
-                <img src={Avatar} />
-              </div>
-              <div className='w-[70px] h-[70px] rounded-full cursor-pointer'>
-                <img src={Avatar} />
-              </div>
+              {doiTac.map((item) => {
+                if (item.name === showDoiTac.name)
+                  return (
+                    <div className='w-[94px] h-[94px] rounded-full cursor-pointer relative'>
+                      <div
+                        className='absolute inset-0 rounded-full'
+                        style={{ background: 'conic-gradient(white 0% 50%, transparent 50% 100%)' }}
+                      />
+                      <img
+                        src={item.avatar}
+                        className='absolute w-[calc(100%-2px)] h-[calc(100%-2px)] rounded-full object-cover'
+                      />
+                    </div>
+                  )
+                return (
+                  <div className='w-[70px] h-[70px] rounded-full cursor-pointer' onClick={() => setShowDoiTac(item)}>
+                    <img src={item.avatar} />
+                  </div>
+                )
+              })}
             </div>
           </div>
           <div className='w-[600px] h-[800px]'>
-            <img src={Preson} className='w-full h-full' />
+            <img src={showDoiTac.image} className='w-full h-full' />
           </div>
         </div>
         <div className='absolute w-full z-20 bottom-[10%] md:bottom-[5%]'>
